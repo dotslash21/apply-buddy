@@ -1,6 +1,5 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import SystemMessagePromptTemplate, HumanMessagePromptTemplate
-from langchain.schema import SystemMessage, HumanMessage
 
 
 class PersonalStatementGenerator:
