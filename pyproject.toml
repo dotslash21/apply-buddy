@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "academic-buddy"
+version = "0.1.0"
+description = ""
+authors = ["Arunangshu Biswas <arunangshubsws@gmail.com>"]
+readme = "README.md"
+packages = [{include = "academic_buddy"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain = "^0.0.251"
+openai = "^0.27.8"
+streamlit = "^1.25.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
