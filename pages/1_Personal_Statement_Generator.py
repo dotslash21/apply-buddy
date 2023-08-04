@@ -33,11 +33,23 @@ st.markdown(
 
 # Input fields
 personality = st.text_input("Personality traits")
-motivation = st.text_input("Motivation for chosen field of study")
-unique_qualities = st.text_input("Unique qualities and accomplishments")
-academic_achievements = st.text_input("Academic achievements")
-extracurricular_activities = st.text_input("Extracurricular activities")
-career_goals = st.text_input("Career goals")
+st.caption("Examples: hardworking, creative, curious, ambitious, etc.")
+
+motivation = st.text_area("Motivation for chosen field of study")
+st.caption("Examples: I am passionate about computer science because...")
+
+unique_qualities = st.text_area("Unique qualities and accomplishments")
+st.caption("Examples: I am a published author, I am a national chess champion, etc.")
+
+academic_achievements = st.text_area("Academic achievements")
+st.caption("Examples: I am a National Merit Scholar, I am a member of the National Honor Society, etc.")
+
+extracurricular_activities = st.text_area("Extracurricular activities")
+st.caption("Examples: I am the captain of my school's debate team, I am the president of my school's robotics club, "
+           "etc.")
+
+career_goals = st.text_area("Career goals")
+st.caption("Examples: I want to become a software engineer, I want to become a doctor, etc.")
 
 # Submit button
 if not openai_api_key or openai_api_key == "":
@@ -61,14 +73,15 @@ elif st.button("Generate Personal Statement"):
         generator = PersonalStatementGenerator(openai_api_key, model="gpt-3.5-turbo")
 
         # Generate personal statement
-        personal_statement = generator.generate(
-            personality=personality,
-            motivation=motivation,
-            unique_qualities=unique_qualities,
-            academic_achievements=academic_achievements,
-            extracurricular_activities=extracurricular_activities,
-            career_goals=career_goals
-        )
+        with st.spinner("Generating..."):
+            personal_statement = generator.generate(
+                personality=personality,
+                motivation=motivation,
+                unique_qualities=unique_qualities,
+                academic_achievements=academic_achievements,
+                extracurricular_activities=extracurricular_activities,
+                career_goals=career_goals
+            )
 
         # Output personal statement
         st.subheader("Personal Statement")
