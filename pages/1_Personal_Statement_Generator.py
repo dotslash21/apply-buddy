@@ -32,56 +32,86 @@ st.markdown(
 )
 
 # Input fields
-personality = st.text_input("Personality traits")
-st.caption("Examples: hardworking, creative, curious, ambitious, etc.")
+university = st.text_input("University of choice")
+st.caption("Examples: Harvard University, Stanford University, etc.")
 
-motivation = st.text_area("Motivation for chosen field of study")
-st.caption("Examples: I am passionate about computer science because...")
+field_of_study = st.text_input("Field of study")
+st.caption("Examples: Computer Science, Economics, etc.")
 
-unique_qualities = st.text_area("Unique qualities and accomplishments")
-st.caption("Examples: I am a published author, I am a national chess champion, etc.")
+motivation = st.text_area("Personal motivation")
+st.caption("Examples: I am passionate about Computer Science because...")
+
+personality = st.text_area("Personality traits")
+st.caption("Examples: I am a hardworking and diligent individual...")
+
+strengths_and_weaknesses = st.text_area("Strengths and weaknesses")
+st.caption("Examples: My strengths include...")
+
+interests_and_hobbies = st.text_area("Interests and hobbies")
+st.caption("Examples: I enjoy playing the piano and reading...")
+
+skills_and_experiences = st.text_area("Relevant skills and experiences")
+st.caption("Examples: I have experience in...")
 
 academic_achievements = st.text_area("Academic achievements")
-st.caption("Examples: I am a National Merit Scholar, I am a member of the National Honor Society, etc.")
+st.caption("Examples: I have achieved a GPA of 4.0...")
 
 extracurricular_activities = st.text_area("Extracurricular activities")
-st.caption("Examples: I am the captain of my school's debate team, I am the president of my school's robotics club, "
-           "etc.")
+st.caption("Examples: I am the president of the school's chess club...")
 
-career_goals = st.text_area("Career goals")
-st.caption("Examples: I want to become a software engineer, I want to become a doctor, etc.")
+career_goals = st.text_area("Future career goals")
+st.caption("Examples: I aspire to become a software engineer...")
+
+word_limit = st.number_input("Word limit", min_value=100, max_value=1000, value=500, step=100)
+st.caption("The approximate number of words you want your personal statement to be.")
 
 # Submit button
 if not openai_api_key or openai_api_key == "":
     st.warning("Please enter your OpenAI API key in the **[Settings](/Settings)** page to submit.", icon="🚨")
 elif st.button("Generate Personal Statement"):
     # Validate input
-    if not personality:
-        st.error("Please enter your personality traits.")
+    if not university:
+        st.error("Please enter your university of choice.")
+    elif not field_of_study:
+        st.error("Please enter your field of study.")
     elif not motivation:
-        st.error("Please enter your motivation for chosen field of study.")
-    elif not unique_qualities:
-        st.error("Please enter your unique qualities and accomplishments.")
+        st.error("Please enter your personal motivation.")
+    elif not personality:
+        st.error("Please enter your personality traits.")
+    elif not strengths_and_weaknesses:
+        st.error("Please enter your strengths and weaknesses.")
+    elif not interests_and_hobbies:
+        st.error("Please enter your interests and hobbies.")
+    elif not skills_and_experiences:
+        st.error("Please enter your relevant skills and experiences.")
     elif not academic_achievements:
         st.error("Please enter your academic achievements.")
     elif not extracurricular_activities:
         st.error("Please enter your extracurricular activities.")
     elif not career_goals:
-        st.error("Please enter your career goals.")
+        st.error("Please enter your future career goals.")
+    elif not word_limit:
+        st.error("Please enter a word limit greater than 0.")
     else:
         # Initialize generator
         generator = PersonalStatementGenerator(openai_api_key, model="gpt-3.5-turbo")
 
         # Generate personal statement
         with st.spinner("Generating..."):
-            personal_statement = generator.generate(
-                personality=personality,
-                motivation=motivation,
-                unique_qualities=unique_qualities,
-                academic_achievements=academic_achievements,
-                extracurricular_activities=extracurricular_activities,
-                career_goals=career_goals
-            )
+            args = {
+                "university": university,
+                "field_of_study": field_of_study,
+                "motivation": motivation,
+                "personality": personality,
+                "strengths_and_weaknesses": strengths_and_weaknesses,
+                "interests_and_hobbies": interests_and_hobbies,
+                "skills_and_experiences": skills_and_experiences,
+                "academic_achievements": academic_achievements,
+                "extracurricular_activities": extracurricular_activities,
+                "career_goals": career_goals,
+                "word_limit": word_limit
+            }
+            personal_statement = generator.generate(**args)
 
         # Output personal statement
         st.subheader("Personal Statement")
