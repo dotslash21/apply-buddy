@@ -23,6 +23,9 @@ st.markdown(
     **Personal Statement** - Craft a powerful personal statement with the aid of large language models. We help 
     you articulate your personality, motivation, and unique qualities, ensuring your application stands out.
     
+    **Statement of Purpose** - Create a captivating statement of purpose that showcases your unique qualities,
+    accomplishments, and aspirations. We help you craft a compelling narrative that will impress admissions committees.
+    
     ApplyBuddy is committed to helping you achieve your college goals. With our AI-powered assistance, you can craft 
     application documents that will impress admissions committees and increase your chances of acceptance to your 
     dream schools.
