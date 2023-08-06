@@ -32,11 +32,8 @@ st.markdown(
 )
 
 # Input fields
-university = st.text_input("University of choice")
-st.caption("Examples: Harvard University, Stanford University, etc.")
-
-field_of_study = st.text_input("Field of study")
-st.caption("Examples: Computer Science, Economics, etc.")
+program_and_university = st.text_input("Program and university of choice")
+st.caption("Examples: Master of Science in Computer Science at Stanford University, etc.")
 
 motivation = st.text_area("Personal motivation")
 st.caption("Examples: I am passionate about Computer Science because...")
@@ -70,10 +67,8 @@ if not openai_api_key or openai_api_key == "":
     st.warning("Please enter your OpenAI API key in the **[Settings](/Settings)** page to submit.", icon="🚨")
 elif st.button("Generate Personal Statement"):
     # Validate input
-    if not university:
-        st.error("Please enter your university of choice.")
-    elif not field_of_study:
-        st.error("Please enter your field of study.")
+    if not program_and_university or program_and_university == "":
+        st.warning("Please enter your program and university of choice.")
     elif not motivation:
         st.error("Please enter your personal motivation.")
     elif not personality:
@@ -99,8 +94,7 @@ elif st.button("Generate Personal Statement"):
         # Generate personal statement
         with st.spinner("Generating..."):
             args = {
-                "university": university,
-                "field_of_study": field_of_study,
+                "program_and_university": program_and_university,
                 "motivation": motivation,
                 "personality": personality,
                 "strengths_and_weaknesses": strengths_and_weaknesses,

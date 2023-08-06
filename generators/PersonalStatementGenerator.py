@@ -14,17 +14,16 @@ class PersonalStatementGenerator:
             You are a helpful assistant, and I appreciate your guidance in crafting a compelling personal 
             statement for my university application. Here are the key inputs:
 
-            1. University: [Name of University]
-            2. Field of Study: [Field of Study]
-            3. Personal Motivation: [Reason for choosing this field and university]
-            4. Personality Traits: [Brief description of my personality traits]
-            5. Strengths and Weaknesses: [Candid reflection on my strengths and weaknesses]
-            6. Interests and Hobbies: [My interests and hobbies]
-            7. Relevant Skills and Experiences: [Skills and experiences gained so far]
-            8. Academic Achievements: [My academic achievements]
-            9. Extracurricular Activities: [My involvement in extracurriculars]
-            10. Future Career Goals: [My aspirations for the future]
-            11. Word Limit: [Word limit for the personal statement]
+            1. Program and University: [The program and university to which I am applying]
+            2. Personal Motivation: [Reason for choosing this field and university]
+            3. Personality Traits: [Brief description of my personality traits]
+            4. Strengths and Weaknesses: [Candid reflection on my strengths and weaknesses]
+            5. Interests and Hobbies: [My interests and hobbies]
+            6. Relevant Skills and Experiences: [Skills and experiences gained so far]
+            7. Academic Achievements: [My academic achievements]
+            8. Extracurricular Activities: [My involvement in extracurriculars]
+            9. Future Career Goals: [My aspirations for the future]
+            10. Word Limit: [Word limit for the personal statement]
 
             Now, I trust you to weave these inputs into a concise and engaging narrative that reflects my persona, 
             aspirations, and potential contributions to the university community. Remember to showcase honesty, 
@@ -33,8 +32,7 @@ class PersonalStatementGenerator:
         )
         self.human_message_prompt_template = HumanMessagePromptTemplate.from_template(
             """
-            University: {university}
-            Field of Study: {field_of_study}
+            Program and University: {program_and_university}
             Personal Motivation: {motivation}
             Personality Traits: {personality}
             Strengths and Weaknesses: {strengths_and_weaknesses}
