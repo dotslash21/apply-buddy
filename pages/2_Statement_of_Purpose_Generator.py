@@ -34,7 +34,7 @@ st.markdown(
 # Form disabled if API key is not set
 is_form_disabled = not openai_api_key or openai_api_key == ""
 if is_form_disabled:
-    st.warning("Please enter your OpenAI API key in the **[Settings](/Settings)** page to submit.", icon="🛑")
+    st.warning("Please enter your OpenAI API key in the **[Settings](/Settings)** page to submit.", icon="⚠️")
 
 # Input fields
 program_and_university = st.text_input("Program and university of choice", disabled=is_form_disabled)
